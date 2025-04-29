@@ -12,12 +12,57 @@
 
 body {
     font-family: "Poppins", sans-serif;
-   
+    background-color: #fff;
+    color: #000;
 }
 
 /********************
 Header
 *********************/
+
+/* ANIMACIÓ FAVICON */
+.bolaLoca {
+    position: fixed; /* Encara que fem scroll, es manté fixa */
+    top: -50px; /* S'inicia suaument per dalt de la vora superior */
+    left: 50%; /* Encara que fem scroll, es manté fixa */
+    transform: translateX(-50%); /* Ajust per a centrar-la */
+    width: 40px; /* Amplada de 40px perque semle una icona */
+    opacity: 0; /* L'inici serà invisible */
+    animation: bolaLoca 10s ease-in-out forwards;
+    /* Inicia l'animació que durarà 10s */
+    z-index: 9999; /* La propietat z-index, fa que els elements estiguen, 
+    per dalt o baix d'altres. Ací fem qeu estiga per dalt */
+  }
+  
+  @keyframes bolaLoca {
+    0% {
+      opacity: 0; /* Al principi l'opacitat 0 = invisible */
+      /* S'inicia a la posició X = -50 Y = -100, és a dir, fora de la pantalla,
+      sense rotació o escala */
+      transform: translateX(-50%) translateY(-100px) rotate(0deg) scale(1);
+      filter: drop-shadow(0 0 0px yellow); /* Tampoc té ombra */
+    }
+    30% {
+      opacity: 1; /* Favicon ja és visible */
+      transform: translateX(-50%) translateY(30vh) rotate(360deg) scale(1.5);
+      /* És desplaça al centre de la pantalla, gira 360g i es fa 1.5 gran */
+      filter: drop-shadow(0 0 20px yellow); /* ombra groga */
+    }
+    60% {
+      /* baixa a 60vheight, gira 2 vegades (720) i es contrau (0.8) */
+      transform: translateX(-50%) translateY(60vh) rotate(720deg) scale(0.8);
+      filter: drop-shadow(0 0 10px red); /* ombra canvia a roig */
+    }
+    100% {
+      opacity: 0; /* Favicon desapareix */
+      /* Baixa fora de la pantalla (100vheigh) i desapareix */
+      transform: translateX(-50%) translateY(100vh) rotate(1080deg) scale(1);
+      filter: drop-shadow(0 0 0px transparent); /* Ombra/brillantor desapareix */
+    }
+  }
+/* FI ANIMACIÓ FAVICON */
+  
+  
 header {
     display: flex;
     justify-content: space-around;
@@ -82,18 +127,40 @@ li a {
 }
 
 .hero-image {
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content:center;
-    text-align: center;
-    position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/IMG_1531.jpg);
-    background-size: cover;
-    background-position: center;
-    color: rgb(255, 255, 255);
-   
-}
+    position: relative; /* La secció té fills posicionats absolute (gradient/txt) */
+    height: 80vh; /* View height. un 80% de la pantalla de l'usuari */
+    overflow: hidden; /* Ocultarà qualsevol contingut per fora de la secció */
+  }
+  
+  .hero-img {
+    width: 100%; /* La imatge ocupa tot l'ample de la secció */
+    height: 100%; /* La imatge ocupa tota l'altura de la secció */
+    object-fit: cover; /* Retallem la imatge per emplenar l'espai sense deformar */
+    display: block; /* Eliminar espais extra */
+  }
+  
+  /* Com apliquem el degradat obscur */
+  .hero-image::before { 
+    content: ""; /* Creem un element invisible abans del contingut */
+    position: absolute; /* Posicionem per damunt de la imatge. Dins de la secció */
+    top: 0; /* Dalt */
+    left: 0; /* A l'esquerra */
+    width: 100%; /* Cobrint tot l'ample */
+    height: 100%; /* Cobrint tota l'altura */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)); /* Per millor llegir el txt, apliquem degradat */
+    z-index: 1; /* Aquesta propietat ens permet colocar per capes. Posem el degradat per dalt de la imatge però per baix del contingut textual  */
+  }
+  
+  /* <h1> i <p> per damunt del degradat */
+  .hero-content {
+    position: absolute; /* Posicionem el text dins de la secció */
+    top: 50%; /* Empemyem cap avall fins el 50% de l'altura */
+    left: 50%; /* Empemyem cap a la dreta fins el 50% de l'ample */
+    transform: translate(-50%, -50%); /* Per a que quede centrat */
+    z-index: 2; /* Text per damunt del degradat (1) i la imatge (0) */
+    color: white; /* Color del text */
+    text-align: center; /* Aliniem el text horitzontalment al centre */
+  }
 
 .hero-image h1 {
     font-size: 3rem;
@@ -101,9 +168,45 @@ li a {
 
 .hero-image p {
     font-size: 1.5rem;
-    line-height: 1em;
+    line-height: 1.5em;
     font-weight: 200;
 }
+
+/* ANIMACIÓ DE h1 i p A LA HERO SECTION  */
+.hero-content h1,
+.hero-content p {
+  opacity: 0; /* El txt serà invisible al principi */
+  animation: animacioText 4.5s ease-out forwards; /* Nom de l'animació, duració. Comença ràpid i acaba lent. En acabar, text es queda en estat final.  */
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); /* Amb la propietat clip-path, retallem el text des de baix. Comença com si estigués ocult */
+}
+
+.hero-content p {
+  animation-delay: 0.5s; /* Efecte casacada. El paràgraf comença després del h1 */
+}
+
+@keyframes animacioText { /* Com va canviat l'animació en el temps? */
+  0% { /* A l'inici de l'animació, el text, <h1> i <p>: */
+    opacity: 0; /* Totalment invisibles */
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);/* Rectangle cobert */
+  }
+
+  33% { /* En arribar al 33% d'eixos 1.5s */
+    opacity: 0.5; /* El txt comença a veure's, amb opacitat del 0.5 */
+    clip-path: polygon(0 70%, 100% 80%, 100% 100%, 0 90%); /* El retall puja en diagonal, la part esquerra puja abans que la dreta */
+  }
+
+  66% {
+    opacity: 0.8;
+    clip-path: polygon(0 30%, 100% 40%, 100% 100%, 0 90%); /* el 1rt punt puja fins el 30% vertical, el 2n fins el 40%. Puja més ràpid el costat esquerra */
+  }
+
+  100% {
+    opacity: 1; /* El txt completament visible */
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0% 90%); /* Quasi tot el txt està destapat  */
+  }
+}
+/* FI ANIMACIÓ */
+
 .seguent {
     font-size: 2rem;
     cursor: pointer;
@@ -166,7 +269,7 @@ Cuina - Index
 }
 
 .card p {
-    font-size: .8rem;
+    font-size: 1rem;
     color: #000000;
     margin-bottom: 20px; /* Espaci abans del botó */
     font-weight: 200;
@@ -181,6 +284,7 @@ Cuina - Index
     text-decoration: none;
     border-radius: 5px;
     font-weight: 200;
+    /* position: relative; */
     transition: background-color 0.3s ease;
 }
 
@@ -188,6 +292,27 @@ Cuina - Index
     background-color: #ffffff; /* Canvia el color en hover */
     color: rgb(249, 178, 51);
 }
+
+/* US DE CLIP-PATH */
+.plat1 {  /* Forma un triangle amb 3 punts de tall */
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* x1(dalt al 50%) /y1(dalt al 0%, x2/y2(baix a l'esquerra), x3/y3 (baix a la dreta) */
+}
+.plat2 { /* Forma un romb amb 4 punts de tall */
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* x1/y1(dalt,centre, x2/y2(dreta, centre vertical), x3/y3 (baix al centre), x4,/y4(esquerra,centre */
+}
+.plat3 { /* Forma un rectangle dalt i baix com una "escalera", amb 7 punts de tall */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+}
+.plat4 { /* Forma un octàgon de 8 costats i diferents punts d'intersecció/tall */
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+.plat5 { /* Forma altre octàgon de 8 costats, però mes aplanat */
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+}
+.plat6 { /* Forma una fletxa apuntant cap a la dreta */
+    clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+}
+/* FI US DE CLIP-PATH */
 
 /* TESTIMONIS */
 .testimonials {
@@ -205,18 +330,22 @@ Cuina - Index
 }
 
 .testimonial {
-    background: white;
+    background: #ffffff;
     padding: 20px;
     margin: 40px 0;
     border-radius: 5px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 300px;
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: 
+    transform 0.8s ease, /* Transició suau al transformar la tarjeta
+    escalar i rotar */
+    background-color 0.8s ease; /* Canvi suau del color de fons */
 }
 
 .testimonial:hover {
-    transform: scale(1.05);
+    transform: rotate(360deg) scale(1.05); /* En passar el cursor, agranda un 5% i gira 360 graus */
+    background-color: #fef3c7; /* Canvia el fons a groc clar */
 }
 
 .testimonial img {
@@ -246,7 +375,6 @@ footer {
     color: white;
     text-align: center;
     padding: 50px;
-
 }
 
 footer ul li {
@@ -254,24 +382,75 @@ footer ul li {
     margin-bottom: 10px;
 }
 
-footer ul li a {
-    color: white;
+.link-divertit {
+    color: rgb(249, 178, 51); /* Color de la marca */
+    position: relative; /* Posicionem  ::after respecte 
+    l'enllaç */
+}
+
+.link-divertit::after {
+    content: ""; /* Pseudo-element buit. Serà la línia */
+    position: absolute; /* Dins de l'enllaç */
+    left: 0; /* Pegat a la vora esquerra de l'enllaç */
+    bottom: 0; /* A la part inferior de l'enllaç */
+    width: 100%; /* Línia cobreix l'ample de l'enllaç */
+    height: 1px; /* Altura de la línia */
+    background: currentColor; /* Color del text */
+
+    transform: scaleX(0); /* La línia està oculta. Escala
+    a 0 horitzontalment */
+    transform-origin: right; /* Animació es contrau a la dreta */
+    transition: transform 250ms ease-in; /* Durada 250ms. Suau */
+}
+
+.link-divertit:hover::after {
+    transform: scale(1); /* Escala completa: línia a tamany normal */
+    transform-origin: left; /* Canvi a esquerra. Comença allí */
 }
 
 .social {
     margin: 20px 0;
 }
+
+.social .icon {
+    cursor: pointer; /* canviem el cursor a una ma en fer hover*/
+}
+  
+.social .icon .circle {
+    fill: #f9b233; /* definim el mateix brand color de la web */
+}
+  
+.social .icon .symbol {
+    fill: none; /* sense farcit intern per als símbols */
+    stroke: white; /* canviem el cursor a una ma en fer hover */
+    stroke-width: 3; /* gruix del contorn del símbol */
+    stroke-dasharray: 1000; /* convertim el traç en xicotets segments discontinus. En aquest cas tan menuts que no es nota */
+    stroke-dashoffset: 1000; /* mou el guió fora de la vista, ocultant el traç */
+    transition: stroke-dashoffset 1s ease; /* apliquem una xicoteta animació de transició en canviar la propietat stroke-dashoffset */
+}
+  
+/* Animació en fer hover sobre <a>, el símbol diubixat amb path.symbol */
+.social a:hover .symbol {
+    stroke-dashoffset: 0; /* fa visible la línia. Com dibuixar en tps real */
+    stroke-width: 10; /* agranda el traç del símbol mentre s'anima */
+}
+
+
+
 @media screen and (min-width: 768px){
+    .hero-image {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/webp/IMG_1531.webp);
+    }
     footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-
+    
 }
 
 @media screen and (min-width: 1024px){
-
+    
     .nav {
         display: block;
     }
@@ -301,6 +480,13 @@ footer ul li a {
 /********************
 detall
 *********************/
+
+.detall-container img:last-child {
+    width: 500px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
 .detall-image {
     height: 80vh;
     display: flex;
@@ -314,6 +500,7 @@ detall
     color: rgb(255, 255, 255);
    
 }
+
 detall-image h1 {
     font-size: 3rem;
 }
@@ -324,7 +511,7 @@ detall-image h1 {
     font-weight: 200;
 }
 
-section h3 {
+section h2 {
     margin: 30px 0px;
     font-size: 2rem;
 }

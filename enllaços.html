@@ -27,10 +27,20 @@
             </ul>
         </nav>
     </header>
-    <div class="hero-image">
-        <h1>Cuina Casolana</h1>
-        <p>Menjar tradicional de Botswana</p>        
-    </div>
+    <section class="hero-image">
+        <picture> 
+            <!-- Imatge per a pantalles grans -->
+            <source srcset="./img/webp/IMG_1531.webp" media="(min-width: 768px)">
+            
+            <!-- Imatge per a mòbils (per defecte) -->
+            <img src="./img/webp/IMG_1531_mobil.webp" alt="Imatge del plat tradicional" style="width: 100%; height: 80vh; object-fit: cover;">
+          </picture>
+        
+          <div class="hero-content">
+            <h1>Benvinguts al Kalahari</h1>
+            <p>Descobreix la cuina autèntica de Botswana</p>
+          </div>
+    </section>
 
     <section class="container" class="links">
       <h2>Enllaços Utilitzats</h2>  
@@ -47,19 +57,39 @@
             <p>2025. Vicent Domingo Sanchis</p>
         </div>
         <div class="social">
-            <a href="#"><img src="./img/facebook.png"  alt="Facebook" width="50px"></a>
-            <a href="#"><img src="./img/instagram.png"  alt="Facebook" width="50px"></a>
-            <a href="#"><img src="./img/twitter.png"  alt="Facebook" width="50px"></a>
-            <a href="#"><img src="./img/youtube.png"  alt="Facebook" width="50px"></a>
+            <a href="#">
+                <svg class="icon" width="60" viewBox="0 0 583.92 563.47" xmlns="http://www.w3.org/2000/svg">
+                    <path class="circle" d="M490.64,281.73c0,109.73-88.95,198.68-198.68,198.68h0c-109.72,0-198.68-89-198.68-198.68h0C93.28,172,182.24,83.06,292,83.06h0c109.73,0,198.68,88.95,198.68,198.67Z"/>
+                    <path class="symbol" d="M350.83,266.32l-3.31,26.58a8.87,8.87,0,0,1-8.78,7.78H295.69V411.81q-6.81.62-13.79.61a154.24,154.24,0,0,1-30.37-3V300.68H218.42a5.54,5.54,0,0,1-5.52-5.54V261.88a5.55,5.55,0,0,1,5.52-5.54h33.11V206.46A55.31,55.31,0,0,1,306.73,151h38.63a5.55,5.55,0,0,1,5.52,5.54v33.26a5.55,5.55,0,0,1-5.52,5.54h-27.6a22.12,22.12,0,0,0-22.07,22.17v38.79h46.36A8.88,8.88,0,0,1,350.83,266.32Z"/>
+                  </svg>
+            </a>
+            <a href="#">
+                <svg class="icon" width="60" viewBox="0 0 583.92 563.47" xmlns="http://www.w3.org/2000/svg">
+                    <path class="circle" d="M490.64,281.73c0,109.78-88.95,198.78-198.68,198.78h0c-109.73,0-198.68-89-198.68-198.78h0C93.28,172,182.24,83,292,83h0c109.73,0,198.68,89,198.68,198.73Z"/>
+                    <path class="symbol" d="M345.87,177.61H238.06a50.32,50.32,0,0,0-50.31,50.31V335.55a50.31,50.31,0,0,0,50.31,50.31H345.87a50.3,50.3,0,0,0,50.31-50.31V227.92A50.31,50.31,0,0,0,345.87,177.61Zm-53.81,104.22A53.91,53.91,0,1,1,346,227.92,53.91,53.91,0,0,1,292.06,281.83Zm58.28-79.5a10.78,10.78,0,1,1,10.78-10.78A10.78,10.78,0,0,1,350.34,202.33Z"/>
+                  </svg>
+            </a>
+            <a href="#">
+                <svg class="icon" width="60" viewBox="0 0 583.92 563.47" xmlns="http://www.w3.org/2000/svg">
+                    <path class="circle" d="M490.64,281.73c0,109.73-88.95,198.68-198.68,198.68h0c-109.72,0-198.68-89-198.68-198.68h0C93.28,172,182.24,83.06,292,83.06h0c109.73,0,198.68,88.95,198.68,198.67Z"/>
+                    <path class="symbol" d="M320.63,263.48l80.37-86H370.48L307.4,245l-48.31-67.47H218.4l81.19,112.71-81.19,86h30.86L301.72,300l50.24,70.28h40.06Z"/>
+                  </svg>
+            </a>
+            <a href="#">
+                <svg class="icon" width="60" viewBox="0 0 583.92 563.47" xmlns="http://www.w3.org/2000/svg">
+                    <path class="circle" d="M490.64,281.73c0,109.73-88.95,198.68-198.68,198.68h0c-109.72,0-198.68-89-198.68-198.68h0C93.28,172,182.24,83.06,292,83.06h0c109.73,0,198.68,88.95,198.68,198.67Z"/>
+                    <path class="symbol" d="M377.59,197.55H206.35a30.64,30.64,0,0,0-30.64,30.63v107.6a30.64,30.64,0,0,0,30.64,30.63H377.59a30.64,30.64,0,0,0,30.64-30.63v-107.6A30.63,30.63,0,0,0,377.59,197.55Zm-98.75,113.2V237.14l52.38,36.81Z"/>
+                  </svg>
+            </a>
         </div>
 
         <ul>
-            <li><a href="">Política de privacitat</a></li>
-            <li><a href="">Política de<i lang="en">cookies</i></a></li>
-            <li><a href="">Avís legal</a></li>
+            <li><a class="link-divertit" href="">Política de privacitat</a></li>
+            <li><a class="link-divertit" href="">Política de<i lang="en"> cookies</i></a></li>
+            <li><a class="link-divertit" href="">Avís legal</a></li>
         </ul>
-        
     </footer>
+
     <script src="js/programa.js"></script>
 </body>
 </html>
