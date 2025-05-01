@@ -114,13 +114,6 @@ li a {
   overflow: hidden;
 }
 
-.hero-img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
 .hero-image:before {
   content: "";
   z-index: 1;
@@ -217,7 +210,7 @@ li a {
   text-align: center;
   background-color: #f9b233;
   border-radius: 5px;
-  margin: auto auto 50px;
+  margin-bottom: 50px;
 }
 
 .card img {
@@ -297,7 +290,7 @@ li a {
 .testimonial-container {
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 40px;
   display: flex;
 }
 
@@ -306,7 +299,7 @@ li a {
   background: #fff;
   border-radius: 5px;
   max-width: 300px;
-  margin: 40px 0;
+  margin: 20px 0;
   padding: 20px;
   transition: transform .8s, background-color .8s;
   box-shadow: 0 4px 8px #0000001a;
@@ -402,6 +395,16 @@ footer ul li {
     background-image: linear-gradient(#00000080, #00000080), url("IMG_1531.ff0b44d4.webp");
   }
 
+  .content-cards {
+    flex-wrap: wrap;
+    gap: 20px;
+    display: flex;
+  }
+
+  .card {
+    flex: 1 0 300px;
+  }
+
   footer {
     justify-content: space-between;
     align-items: center;
@@ -428,12 +431,22 @@ footer ul li {
 
   .content-cards {
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px;
     display: flex;
   }
 
   .card {
     flex: 1 0 300px;
+  }
+
+  .seccio-presentacio h2 {
+    margin-bottom: 30px;
+    font-size: 3rem;
+  }
+
+  .seccio-presentacio p {
+    font-size: 1.3rem;
+    font-weight: 200;
   }
 }
 
@@ -461,7 +474,7 @@ footer ul li {
   position: relative;
 }
 
-detall-image h1 {
+.detall-image h1 {
   font-size: 3rem;
 }
 
