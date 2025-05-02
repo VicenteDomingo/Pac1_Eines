@@ -376,6 +376,10 @@ footer ul li {
   fill: #f9b233;
 }
 
+.social a {
+  text-decoration: none;
+}
+
 .social .icon .symbol {
   fill: none;
   stroke: #fff;
@@ -427,16 +431,6 @@ footer ul li {
 
   .hero-image h1 {
     font-size: 5rem;
-  }
-
-  .content-cards {
-    flex-wrap: wrap;
-    gap: 20px;
-    display: flex;
-  }
-
-  .card {
-    flex: 1 0 300px;
   }
 
   .seccio-presentacio h2 {

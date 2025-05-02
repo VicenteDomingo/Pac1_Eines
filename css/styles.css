@@ -407,7 +407,11 @@ footer ul li {
 .social .icon .circle {
     fill: #f9b233; /* definim el mateix brand color de la web */
 }
-  
+
+.social a {
+    text-decoration: none;
+}
+
 .social .icon .symbol {
     fill: none; /* sense farcit intern per als símbols */
     stroke: white; /* canviem el cursor a una ma en fer hover */
@@ -416,6 +420,7 @@ footer ul li {
     stroke-dashoffset: 1000; /* mou el guió fora de la vista, ocultant el traç */
     transition: stroke-dashoffset 1s ease; /* apliquem una xicoteta animació de transició en canviar la propietat stroke-dashoffset */
 }
+
   
 /* Animació en fer hover sobre <a>, el símbol diubixat amb path.symbol */
 .social a:hover .symbol {
@@ -429,6 +434,7 @@ footer ul li {
     .hero-image {
         background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/webp/IMG_1531.webp);
     }
+
     .content-cards {
         display: flex;
         flex-wrap: wrap;
@@ -460,16 +466,6 @@ footer ul li {
     }
     .hero-image h1 {
         font-size: 5rem;
-    }
-
-    /* CARDS */
-    .content-cards {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-    .card {
-        flex: 1 0 300px;
     }
 
     .seccio-presentacio h2 {
